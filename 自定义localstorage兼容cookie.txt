@@ -1,4 +1,4 @@
-//存储，IE6~7 cookie 其他浏览器HTML5本地存储
+1、（比较简单的）//存储，IE6~7 cookie 其他浏览器HTML5本地存储
 if (window.localStorage) {
     localStorage.setItem("menuTitle", arrDisplay);	
 } else {
@@ -9,7 +9,7 @@ if (window.localStorage) {
 var strStoreDate = window.localStorage? localStorage.getItem("menuTitle"): Cookie.read("menuTitle");	
 
 
-自定义localstorage兼容cookie
+2、（比较完善的）自定义localstorage兼容cookie
 (function(){
 almLocalStorage = {
        supportLoaclStorage: function () {
