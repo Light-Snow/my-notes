@@ -22,3 +22,7 @@ camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (�
     
 #### 4、[使用 Slot 分发内容](https://cn.vuejs.org/v2/guide/components.html#使用-Slot-分发内容)
 内容分发是个很好玩的东西，可点击上述链接。
+
+#### 5、[keep-alive](https://cn.vuejs.org/v2/guide/components.html#keep-alive)
+
+keep-alive可以把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。
