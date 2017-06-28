@@ -15,3 +15,10 @@ camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (�
 <!-- 传递实际的 number -->
 <comp v-bind:some-prop="1"></comp>
 ```
+#### 3、[使用 v-on 绑定自定义事件](https://cn.vuejs.org/v2/guide/components.html#使用-v-on-绑定自定义事件)
+
+    使用 $on(eventName) 监听事件
+    使用 $emit(eventName) 触发事件
+    
+#### 4、[使用 Slot 分发内容](https://cn.vuejs.org/v2/guide/components.html#使用-Slot-分发内容)
+内容分发是个很好玩的东西，可点击上述链接。
