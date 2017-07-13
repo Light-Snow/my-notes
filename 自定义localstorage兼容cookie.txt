@@ -135,3 +135,63 @@ var strStoreDate = window.localStorage? localStorage.getItem("menuTitle"): Cooki
     _global = (function(){ return this || (0, eval)('this'); }());
     !('dataProxy' in _global) && (_global.dataProxy = dataProxy);
 }());
+
+3、类的方式
+export default class LocalStorageProxy{
+  
+  /**
+   *
+   * @param name
+   * @returns {*}
+   */
+  static getItem(name){
+    let value= this.invokeLocalStorageMethod('getItem',name);
+    
+    if(isJSONString(value)){
+      return JSON.parse(value);
+    }
+    
+    if(isBaseDataType(value)){
+      return eval(value);
+    }
+    
+    return value;
+  }
+  
+  /**
+   *
+   * @param name {String}
+   * @param value {*}
+   */
+  static setItem(name,value){
+    
+    if(isObject(value)){
+      value=JSON.stringify(value);
+    }
+    
+    this.invokeLocalStorageMethod('setItem',name,value);
+  }
+  
+  /**
+   *
+   * @param name
+   */
+  static removeItem(name){
+    this.invokeLocalStorageMethod('removeItem',name);
+  }
+  
+  /**
+   *
+   * @param args
+   */
+  static invokeLocalStorageMethod(...args){
+    try {
+      
+      let method=args.shift();
+      
+      return localStorage[method].apply(localStorage,args);
+    }catch (e){
+      console.warn(e);
+    }
+  }
+}
