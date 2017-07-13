@@ -1,4 +1,4 @@
-1°¢£®±»ΩœºÚµ•µƒ£©//¥Ê¥¢£¨IE6~7 cookie ∆‰À˚‰Ø¿¿∆˜HTML5±æµÿ¥Ê¥¢
+1„ÄÅÔºàÊØîËæÉÁÆÄÂçïÁöÑÔºâ//Â≠òÂÇ®ÔºåIE6~7 cookie ÂÖ∂‰ªñÊµèËßàÂô®HTML5Êú¨Âú∞Â≠òÂÇ®
 if (window.localStorage) {
     localStorage.setItem("menuTitle", arrDisplay);	
 } else {
@@ -9,18 +9,20 @@ if (window.localStorage) {
 var strStoreDate = window.localStorage? localStorage.getItem("menuTitle"): Cookie.read("menuTitle");	
 
 
-2°¢£®±»ΩœÕÍ…∆µƒ£©◊‘∂®“ÂlocalstorageºÊ»›cookie
-(function(){
-almLocalStorage = {
-       supportLoaclStorage: function () {
+2„ÄÅÔºàÊØîËæÉÂÆåÂñÑÁöÑÔºâËá™ÂÆö‰πâlocalstorageÂÖºÂÆπcookie
+;(function(global,undefined){
+    "use strict"; // ‰ΩøÁî®js‰∏•Ê†ºÊ®°ÂºèÊ£ÄÊü•Ôºå‰ΩøËØ≠Ê≥ïÊõ¥ËßÑËåÉ
+    var _global;
+    var dataProxy = {
+       supportLocalStorage: function () {
            if (window.localStorage) {
                return true;
            }
            return false;
        },
        setItem: function (name, value, expiredate) {
-           if (this.supportLoaclStorage()) {
-             if(expiredate==null || expiredate==0){
+           if (this.supportLocalStorage()) {
+             if(expiredate===null || expiredate===0){
                     window.localStorage.setItem(name, value);
                 } else {
                    var v = null;
@@ -43,7 +45,7 @@ almLocalStorage = {
                    document.cookie = name + "=" + escape(value) + ";expires=" + expire.toUTCString();
                    return;
                }
-               //ƒ¨»œpath ∏˘¬∑æ∂
+               //ÈªòËÆ§path Ê†πË∑ØÂæÑ
                if (expiredate > 0) {
                    var expire = new Date();
                    expire.setTime(expire.getTime() + expiredate * 24 * 3600 * 1000);
@@ -52,33 +54,26 @@ almLocalStorage = {
                    document.cookie = name + "=" + escape(value) + ";path=/";
                }
            }
-
-
-
-
        },
        getItem: function (name) {
-           if (this.supportLoaclStorage()) {
+           if (this.supportLocalStorage()) {
                var v = window.localStorage.getItem(name);
-               if(v!=null && v!=""){
+               if(v!==null && v!==""){
                    try{
                        var value = JSON.parse(v);
                       var expires = value.expires;
-                       if(expires!=null && expires!= ""){
+                       if(expires !== null && expires !== ""){
                           if(new Date().getTime()-expires>0){
                               window.localStorage.removeItem(name);
                               return "";
                           }
                        }
-
-
-                       if(value.defaultname==null ||value.defaultname==""){
+                       if(value.defaultname===null ||value.defaultname===""){
                            return v;
                        }else{
                            return value.defaultname;
                        }
                    }catch(e){
-
 
                    }
                }
@@ -86,32 +81,31 @@ almLocalStorage = {
            }
            if (document.cookie.length > 0) {
                var cookieStr = document.cookie;
-               var nameidnex = cookieStr.indexOf(name);
-               if (nameidnex == -1) {
+               var nameIndex = cookieStr.indexOf(name);
+               if (nameIndex === -1) {
                    return "";
                }
                var lastIndex = cookieStr.indexOf(";", nameidnex);
                if (lastIndex = -1) {
                    lastIndex = cookieStr.length;
                }
-               ;
                return unescape(cookieStr.substring(nameidnex + name.length + 1, lastIndex));
            }
            return "";
        },
        removeItem: function (name) {
-           if (this.supportLoaclStorage()) {
+           if (this.supportLocalStorage()) {
                window.localStorage.removeItem(name);
                return;
            }
            var value = this.getItem(name);
-           if (value == "") {
+           if (value === "") {
                return;
            }
            this.setItem(name, value, -1);
        },
        clear: function () {
-           if (this.supportLoaclStorage()) {
+           if (this.supportLocalStorage()) {
                window.localStorage.clear();
                return;
            }
@@ -125,7 +119,7 @@ almLocalStorage = {
            }
        },
        showStorage: function () {
-           if (this.supportLoaclStorage()) {
+           if (this.supportLocalStorage()) {
                var localStorage = window.localStorage;
                var len = localStorage.length;
                var storyArray = new Array();
@@ -136,9 +130,8 @@ almLocalStorage = {
            }
            return document.cookie;
        }
-
-
-
-
-   };
-})();
+    };
+    // ÊúÄÂêéÂ∞ÜÊèí‰ª∂ÂØπË±°Êö¥Èú≤ÁªôÂÖ®Â±ÄÂØπË±°
+    _global = (function(){ return this || (0, eval)('this'); }());
+    !('dataProxy' in _global) && (_global.dataProxy = dataProxy);
+}());
