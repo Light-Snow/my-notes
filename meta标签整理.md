@@ -69,3 +69,88 @@ minimal-ui：可以在页面加载时最小化上下状态栏。（已弃用）
  ```
 <meta name="apple-mobile-web-app-title" content="标题">
  ```
+ ### 忽略数字自动识别为电话号码
+ ```
+<meta content="telephone=no" name="format-detection" /> 
+ ```
+ ### 忽略识别邮箱
+ ```
+<meta content="email=no" name="format-detection" />
+ ```
+ ### 添加智能 App 广告条 
+ Smart App Banner：告诉浏览器这个网站对应的app，并在页面上显示下载banner(如下图)。
+ 参考文档
+ ```
+<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+```
+预览 https://segmentfault.com/img/bVkgzR
+
+### 其他
+ ```
+<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+<meta name="HandheldFriendly" content="true">
+<!-- 微软的老式浏览器 -->
+<meta name="MobileOptimized" content="320">
+<!-- uc强制竖屏 -->
+<meta name="screen-orientation" content="portrait">
+<!-- QQ强制竖屏 -->
+<meta name="x5-orientation" content="portrait">
+<!-- UC强制全屏 -->
+<meta name="full-screen" content="yes">
+<!-- QQ强制全屏 -->
+<meta name="x5-fullscreen" content="true">
+<!-- UC应用模式 -->
+<meta name="browsermode" content="application">
+<!-- QQ应用模式 -->
+<meta name="x5-page-mode" content="app">
+<!-- windows phone 点击无高光 -->
+<meta name="msapplication-tap-highlight" content="no">
+ ```
+ 
+## 网页相关
+### 申明编码
+ ```
+<meta charset='utf-8' />
+ ```
+### 优先使用 IE 最新版本和 Chrome
+ ```
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- 关于X-UA-Compatible -->
+<meta http-equiv="X-UA-Compatible" content="IE=6" ><!-- 使用IE6 -->
+<meta http-equiv="X-UA-Compatible" content="IE=7" ><!-- 使用IE7 -->
+<meta http-equiv="X-UA-Compatible" content="IE=8" ><!-- 使用IE8 -->
+ ```
+### 浏览器内核控制：
+国内浏览器很多都是双内核（webkit和Trident），webkit内核高速浏览，IE内核兼容网页和旧版网站。
+而添加meta标签的网站可以控制浏览器选择何种内核渲染。参考文档
+ ```
+ <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  ```
+国内双核浏览器默认内核模式如下：
+1. 搜狗高速浏览器、QQ浏览器：IE内核（兼容模式）
+2. 360极速浏览器、遨游浏览器：Webkit内核（极速模式）
+
+### 禁止浏览器从本地计算机的缓存中访问页面内容：
+这样设定，访问者将无法脱机浏览。
+ ```
+<meta http-equiv="Pragma" content="no-cache">
+ ```
+### Windows 8
+ ```
+<meta name="msapplication-TileColor" content="#000"/> <!-- Windows 8 磁贴颜色 -->
+<meta name="msapplication-TileImage" content="icon.png"/> <!-- Windows 8 磁贴图标 -->
+ ```
+### 站点适配：
+主要用于PC-手机页的对应关系。
+ ```
+<meta name="mobile-agent"content="format=[wml|xhtml|html5]; url=url">
+<!--
+[wml|xhtml|html5]根据手机页的协议语言，选择其中一种；
+url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一一对应关系。
+ -->
+  ```
+### 转码申明：
+用百度打开网页可能会对其进行转码（比如贴广告），避免转码可添加如下meta
+ ```
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+ ```
