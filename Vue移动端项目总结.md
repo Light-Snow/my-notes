@@ -135,6 +135,15 @@ console.log("组件开始加载")
 
 28、想获取子组件的值是通过自定义事件获取的，子组件this.$emit(eventName, params),父组件监听事件获取参数v-on:eventName=eventName,eventName(params){console.log(params)}，
 
+29、flex:1; 给flex添加前缀并不是万能的，其原因是不能用行内元素，要改成block才能更好的支持flex，当元素使用flex:1时，要增加width:0%; 且不能使用margin:0 auto;
+```
+-webkit-box-flex: 1;
+-ms-flex: 1;
+flex: 1;
+display: block;
+width: 0%;
+```
+
 附：
 
 vue2.0相关文档
