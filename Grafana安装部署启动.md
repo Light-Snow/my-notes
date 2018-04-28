@@ -45,3 +45,5 @@ brew services start grafana
 // stop
 brew services stop grafana
 ```
+
+grafana的默认端口是3000，用户名和密码为 admin admin
