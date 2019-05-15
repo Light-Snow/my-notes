@@ -154,3 +154,5 @@ url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一�
  ```
 <meta http-equiv="Cache-Control" content="no-siteapp" />
  ```
+
+document.title = '\u200E' // 页面title设置为空
