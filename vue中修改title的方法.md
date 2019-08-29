@@ -19,3 +19,7 @@ function setDocumentTitle(title) {
     }, 0);
 }
 ```
+### 设置空白title
+```
+document.title = '\u200E' // 页面title设置为空
+```
